@@ -9,6 +9,8 @@ To run the Project ensure you have the following tools
 4. IEDriver, ChromeDriver, geckodriver, operadriver(these are the various drivers that are needed to run the browsers, Internet explorer, Chrome, Firefox, Opera Mini
 5. Ensure you have the browsers installed and saved passwords for tests
 6. Makes sure you have admin rights on your machine.
+7. Make sure you have MySQL 5.1 installed
+8. Find a file named New Project 20200615 2343 and restore your database schema so as to store the passwords and usernames 
 
 To run the project:
 1. Start Netbeans 8.2
