@@ -22,7 +22,12 @@ public class BrowserPass {
 
     public static void main(String[] args) {
         BrowserPass pass = new BrowserPass();
+        
+        
         pass.opera();
+        pass.chrome();
+        pass.IE();
+        pass.firefox();
     }
 
     public void chrome() {
